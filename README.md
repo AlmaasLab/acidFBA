@@ -3,7 +3,7 @@
 The acidFBA approach expands on the enzyme-constrained framework of GECKO (GEM with Enzymatic Constraints using Kinetic and Omics data) by also accounting for the usage of proteinogenic amino acids. This repository contains all data and code necessary to construct an acidFBA-GEM of the concensus enzyme-constrained yeast GEM Yeast v. 8.3.4 and reproduce the results of the paper: "Phenotypic response of yeast metabolic network to availability of proteinogenic amino acids", Simensen et al. 2022.
 
 ## Requirements
-- Matlab (tested on Matlab 2020a)
+- Matlab (>= 2020a)
 - RAVEN Toolbox 2
 - COBRA Toolbox v3.0
 - python 3 (>= 3.5)
