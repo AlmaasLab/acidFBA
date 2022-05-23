@@ -6,6 +6,7 @@ The acidFBA approach expands on the enzyme-constrained framework of [GECKO](http
 - Matlab (>= 2020a)
 - RAVEN Toolbox 2
 - COBRA Toolbox v3.0
+- Gurobi (>= 8.1.1)
 - python 3 (>= 3.5)
 - pip package manager
 
@@ -21,8 +22,8 @@ Use pip to install the necessary Python packages listed in *requirements.txt*
 `pip install -r requirements.txt`
 
 ## Usage
-- Running the `initAcidFBA.m` script, the acidFBA-GEM is constructed and used to reproduce all the results presented in the article.
-- The figures found under the `figures` folder can also be created by running the Jupyter notebook `fig_notebook.ipynb`.
+- Running the `initAcidFBA.m` script, the acidFBA-GEM is constructed and used to reproduce all results presented in the article.
+- The figures found under the `figures` folder can also be created via the Jupyter notebook `fig_notebook.ipynb`.
 
 # Contributors
 - [Vetle Simensen](https://www.ntnu.no/ansatte/vetle.simensen), Norwegian University of Science and Technology, Norway
