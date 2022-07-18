@@ -39,6 +39,10 @@ nSamples = 5000;
 [aaMatDflt,aaMinDflt,aaMaxDflt] = sampleNutrientEnvironments(acidFBAmodel,nSamples,'Default');
 
 
+%% Species-specific amino acid distributions (Fig. 5) 
+minAminoAcidDiff(acidFBAmodel);
+
+
 %% Sample nutrient environments, universal amino acid distribution (S2 Fig)
 fprintf('Constructing acidFBA model (universal and homogeneous amino acid distribution) ...');
 univBool = true;
