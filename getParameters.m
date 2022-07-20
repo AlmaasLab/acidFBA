@@ -7,7 +7,7 @@ function parameters = getParameters()
 %    parameters = getParameters()
 %
 % OUTPUT:
-%    parameters:             Struct of parameters. See descriptions below.
+%    parameters:             Structure of parameters. See descriptions below
 %
 % .. Authors:
 %       - Vetle Simensen 27/08/20
@@ -21,14 +21,12 @@ parameters.aaCodes = {'A','C','D','E','F','G','H','I','K','L','M','N', ...
             'P','Q','R','S','T','V','W','Y'}; 
         
 % Three letter amino acid codes
-parameters.aaThreeCodes = {'ala','cys','asp','glu','phe','gly','his','ile','lys','leu','met','asn', ...
-            'pro','gln','arg','ser','thr','val','trp','tyr'}; 
+parameters.aaThreeCodes = {'Ala','Cys','Asp','Glu','Phe','Gly','His','Ile','Lys','Leu','Met','Asn', ...
+            'Pro','Gln','Arg','Ser','Thr','Val','Trp','Tyr'}; 
         
 % Corresponding model metabolites
-parameters.aaMets = {'A[cytoplasm]','C[cytoplasm]','D[cytoplasm]','E[cytoplasm]','F[cytoplasm]',...
-    'G[cytoplasm]','H[cytoplasm]','I[cytoplasm]','K[cytoplasm]','L[cytoplasm]','M[cytoplasm]',...
-    'N[cytoplasm]','P[cytoplasm]','Q[cytoplasm]','R[cytoplasm]','S[cytoplasm]','T[cytoplasm]',...
-    'V[cytoplasm]','W[cytoplasm]','Y[cytoplasm]'};
+parameters.aaMets = {'A[c]','C[c]','D[c]','E[c]','F[c]','G[c]','H[c]','I[c]','K[c]','L[c]','M[c]',...
+    'N[c]','P[c]','Q[c]','R[c]','S[c]','T[c]','V[c]','W[c]','Y[c]'};
 
 % Amino acid source reactions
 parameters.aaDrains = {'AAR_pool_A','AAR_pool_C','AAR_pool_D','AAR_pool_E','AAR_pool_F','AAR_pool_G',...
@@ -52,9 +50,10 @@ parameters.Ptot = 0.5;      % assumed constant
 % Mass fraction of proteins accounted for in the model
 parameters.f = 0.4461;
 
-%% Relevant exchange reactions measured by Yu et al. 2021
-% GECKO model
+% Protein pool exchange
 parameters.protPool = 'prot_pool_exchange';
+
+% Relevant exchange reactions
 parameters.glcUpt = 'r_1714_REV';
 parameters.nh4Upt = 'r_1654_REV';
 parameters.etohSec = 'r_1761';
@@ -66,4 +65,3 @@ parameters.co2Sec = 'r_1672';
 parameters.oxyUpt = 'r_1992_REV';
 
 end
-

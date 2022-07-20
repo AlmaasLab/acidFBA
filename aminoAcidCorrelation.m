@@ -1,4 +1,4 @@
-function aminoAcidCorrelation(model,uniProtTable)
+function aminoAcidCorrelation(model,protArray)
 %aminoAcidCorrelation Plots the acidFBA model-predicted amino acid and protein
 %distribution against experimental measurements.
 %   This functions calculates and plots the model-predicted amino acid
@@ -7,18 +7,16 @@ function aminoAcidCorrelation(model,uniProtTable)
 %
 % USAGE:
 %
-%    aminoAcidCorrelation(model,uniProtTable)
+%    aminoAcidCorrelation(model,protArray)
 %
 % INPUTS:
-%    model:                    AcidFBA model structure.
+%    model:                    AcidFBA model structure
 %
-%    uniProtTable:             Cell array of amino acid sequences on the
-%                              GECKO-implemented metabolic proteins with
-%                              the following columns:
-%                                  1. UniProt ID
-%                                  2. Sequence length
-%                                  3. Yeast gene name
-%                                  4. Amino acid sequence
+%    protArray:                Cell array containing the identifiers
+%                              and sequences of the GECKO-implemented proteins.
+%                              Has the following columns
+%                                   1. Identifiers
+%                                   2. Amino acid sequences (single letter codes)
 %
 % .. Authors:
 %       - Vetle Simensen 27/01/21
@@ -28,7 +26,7 @@ params = getParameters();
 sigma = 0.439;     % numerical issues with sigma = 0.44
 
 % UniProt IDs and amino acid sequences
-uniprotSeqHash = containers.Map(uniProtTable(:,1),uniProtTable(:,4));
+uniprotSeqHash = containers.Map(protArray(:,1),protArray(:,2));
 
 %% Predicted amino acid mass fractions 
 fprintf('Simulating amino acid usage ...');
@@ -45,7 +43,7 @@ fprintf('DONE \n');
 %% Process experimental proteomics measurements
 fprintf('Reading proteomics data ...');
 currDir = cd;
-cd experimental
+cd proteins
 expDat = readcell('Bartolomeo2020_proteomics.xlsx');
 cd(currDir);
 
@@ -136,4 +134,3 @@ protMW = sum(aaMasses);
 aaMassFrac = aaMasses ./ protMW;    % amino acid mass fractions (g/g)
 
 end
-

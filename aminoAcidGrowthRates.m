@@ -31,7 +31,7 @@ growthProteins = modelFun(mdl.Coefficients.Estimate, growthRates);  % correspond
 %% Simulate metabolic phenotype
 aaUsage = zeros(length(growthRates), length(aaDrains));     % data for scatter plot
 hmGrowth = [0.1 0.2 0.3 0.4];
-hmIdx = 1;
+hmIdx = 1;  
 aaHmUsage = zeros(length(aaDrains), length(hmGrowth));      % data for heatmap
 
 for i = 1:length(growthRates)
@@ -72,6 +72,7 @@ writematrix(aaHmUsage,'data/aaHmUsage.csv');
 writematrix(growthRates,'data/growthRates.csv');
 
 %% Simulate respiratory vs. fermentative amino acid distribution
+% Aerobic model
 aerobModel = model;
 aerobModel = changeRxnBounds(aerobModel,aerobModel.rxns(logical(aerobModel.c)),0.2,'u');    % limit maximal growth rate to 0.2 (prevent respiro-fermentative metabolism)
 constrainProtPool(aerobModel,params.Ptot,params.f,0.44);
@@ -82,6 +83,8 @@ aerobModel = changeRxnBounds(aerobModel, 'r_2045_REV', 0, 'u');
 % Constrain secretion of pyruvate, (R,R)-2,3-butanediol, acetaldehyde,
 % and glycine to physiological levels
 aerobModel = changeRxnBounds(aerobModel, {'r_2033', 'r_1549', 'r_1631', 'r_1810'}, 1e-5, 'u');
+
+% Anaerobic model
 anaerobModel = convertToAnaerob(aerobModel);
 
 % Minimize total sum of fluxes
@@ -104,4 +107,4 @@ X = reordercats(X,params.aaThreeCodes(I));
 respFermTable = table(X',Y,'VariableNames',{'Amino acids','AbsRelDiff'});
 writetable(respFermTable,'data/absRelDiff.csv');
 
-
+end

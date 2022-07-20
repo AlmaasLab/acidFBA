@@ -23,7 +23,7 @@ changeCobraSolverParams('QP','optTol',1.0000e-09);
 currDir = cd;
 cd data
 aaFrac = readmatrix('aaMassFracsOrganisms.xlsx');
-aaFrac = aaFrac(:,2:5);     % fix for more organisms
+aaFrac = aaFrac(:,2:5);
 [nAA,nOrg] = size(aaFrac);
 cd(currDir);
 
@@ -34,7 +34,7 @@ wtModel = changeRxnBounds(model,params.aaDrains,aaYeastProfile * model.ub(protId
 wtSol = optimizeCbModel(wtModel);
 
 % Define range of relative growth rates
-nVals = 45;
+nVals = 35;
 relGrowthRates = linspace(0.1,2.5,nVals);
 yvals = zeros(nAA,nVals,nOrg);
 
@@ -92,4 +92,3 @@ for i = 1:nOrg
 end
 
 end
-

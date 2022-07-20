@@ -20,7 +20,7 @@ anaerobModel = model;
 anaerobModel.ub(strcmp(anaerobModel.rxns,'r_1992_REV')) = 0;
 
 % Change biomass composition (cofactors)
-met_index = ismember(anaerobModel.metNames,{'s_3714[c]','s_1198[c]','s_1203[c]','s_1207[c]','s_1212[c]','s_0529[c]'});
+met_index = ismember(anaerobModel.mets,{'s_3714[c]','s_1198[c]','s_1203[c]','s_1207[c]','s_1212[c]','s_0529[c]'});
 anaerobModel.S(met_index,strcmp(anaerobModel.rxns,'r_4598')) = 0;
 
 % Allow for fatty acid and sterol exchange
@@ -35,8 +35,8 @@ anaerobModel.ub(strcmp(anaerobModel.rxns,'r_2189_REV')) = 1000;    %oleate
 % Update GAM and NGAM
 GAM = 30.49;  % data from Nissen et al. 1997
 NGAM = 0;  % data from Nissen et al. 1997
-met_index = ismember(anaerobModel.mets,{'ADP [cytoplasm]','ATP [cytoplasm]','H+ [cytoplasm]',...
-    'H2O [cytoplasm]','phosphate [cytoplasm]'});
+met_index = ismember(anaerobModel.mets,{'s_0394[c]','s_0434[c]','s_0794[c]',...
+    's_0803[c]','s_1322[c]'});
 anaerobModel.S(met_index,strcmp(anaerobModel.rxns,'r_4041')) = [GAM -GAM GAM -GAM GAM];
 anaerobModel = changeRxnBounds(anaerobModel,'r_4046',NGAM,'b');
 
@@ -51,4 +51,3 @@ anaerobModel.ub(strcmp(anaerobModel.rxns,'r_0487No1')) = 0;
 anaerobModel.ub(strcmp(anaerobModel.rxns,'r_0472No1')) = 0;
 
 end
-
