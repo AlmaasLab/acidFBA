@@ -29,10 +29,7 @@ mdl = fitnlm(dilRates, protFracs, modelFun, initCoeff);
 growthProteins = modelFun(mdl.Coefficients.Estimate, growthRates);  % corresponding protein fractions
 
 %% Simulate metabolic phenotype
-aaUsage = zeros(length(growthRates), length(aaDrains));     % data for scatter plot
-hmGrowth = [0.1 0.2 0.3 0.4];
-hmIdx = 1;  
-aaHmUsage = zeros(length(aaDrains), length(hmGrowth));      % data for heatmap
+aaUsage = zeros(length(growthRates), length(aaDrains));     % data for scatter plots
 
 for i = 1:length(growthRates)
     % Constrain growth and protein availability
@@ -58,17 +55,10 @@ for i = 1:length(growthRates)
     sol = optimizeCbModel(tempModel, 'min');
     
     aaUsage(i,:) = sol.x(aaDrainsRxnIdxs);  % amino acid drain fluxes
-    
-    % Add data for heatmap
-    if mod(growthRates(i), 0.1) == 0
-        aaHmUsage(:,hmIdx) = sol.x(aaDrainsRxnIdxs);
-        hmIdx = hmIdx + 1;
-    end
 end
 
 % Save data
 writematrix(aaUsage,'data/aaUsage.csv');
-writematrix(aaHmUsage,'data/aaHmUsage.csv');
 writematrix(growthRates,'data/growthRates.csv');
 
 %% Simulate respiratory vs. fermentative amino acid distribution
