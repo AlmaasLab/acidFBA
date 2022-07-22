@@ -4,6 +4,7 @@ The acidFBA approach expands on the enzyme-constrained framework of [GECKO](http
 
 ## Requirements
 - Matlab (>= 2020a)
+- Matlab Statistics and Machine Learning Toolbox
 - RAVEN Toolbox 2
 - COBRA Toolbox v3.0
 - Gurobi (>= 8.1.1)
